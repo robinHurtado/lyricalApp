@@ -10,14 +10,14 @@ const app = express();
 // Replace with your mongoLab URI
 const MONGO_URI = 'mongodb://localhost:27017/lyricaldb';
 if (!MONGO_URI) {
-  throw new Error('You must provide a MongoLab URI');
+  throw new Error('You must provide a Mongo URI');
 }
 
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI);
 mongoose.connection
     .once('open', () => console.log('Connected to Mongo instance.'))
-    .on('error', error => console.log('Error connecting to MongoLab:', error));
+    .on('error', error => console.log('Error connecting to Mongo:', error));
 
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
