@@ -6,21 +6,23 @@ import _ from 'lodash';
 class SongList extends Component {
   render() {
     const { songs, loading } = this.props.data;
+
     if (loading) {
       return(
         <div>Loading...</div>
       );
     }
+
     return (
       <div>
         Song List
         <ul className="collection">
           {
-           _.map(songs, (obj) =>
-            <li key={obj.id} className="collection-item">
-              {obj.title}
-            </li>
-          )
+            _.map(songs, (obj) =>
+              <li key={obj.id} className="collection-item">
+                {obj.title}
+              </li>
+            )
           }
         </ul>
       </div>

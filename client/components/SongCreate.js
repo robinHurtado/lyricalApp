@@ -1,3 +1,46 @@
-import React, { Component } fro 'react';
+import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-export default () => <div>App!</div>
+class SongCreate extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { title: ''};
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+    this.props.mutate({
+      variabes: {
+        title: this.state.title
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>Create a New Song!</h3>
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <label>Song Title:</label>
+          <input
+            type="text"
+            onChange={event => this.setState({ title: event.target.value})}
+            value={this.state.title}
+          />
+          <input type="submit" />
+        </form>
+      </div>
+    );
+  }
+}
+
+const mutation = gql`
+  mutation AddSong($title: String){
+    addSong(title: $title) {
+      title
+    }
+  }
+`;
+
+export default graphql(mutation)(SongCreate);
