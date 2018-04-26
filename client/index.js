@@ -10,7 +10,9 @@ import App from './components/App';
 import SongCreate from './components/SongCreate';
 import SongDetails from './components/SongDetails';
 
-const client = new ApolloClient({}); // assumes that the endpoint is /graphql
+const client = new ApolloClient({
+  dataIdFromObject: o => o.id
+}); // assumes that the endpoint is /graphql - o.id allows apollo to keep track of every piece of data
 
 const Root = () => {
   return (
