@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag'; // a helper lib for writing your queries in your components files
+import gql from 'graphql-tag'; // a helper lib to write your queries in your components files
 import { graphql } from 'react-apollo'; // this func is binding our component and our query
 import _ from 'lodash';
 import { Link } from 'react-router';
@@ -22,7 +22,7 @@ class SongList extends Component {
 
     return (
       <div>
-        Song List
+        <h3>Song List</h3>
         <ul className="collection">
           {
             _.map(songs, ({ title,id }) =>
